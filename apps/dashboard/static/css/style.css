@@ -1,0 +1,229 @@
+.form-box {
+  max-width: 500px;
+  margin: auto;
+  padding: 50px;
+  background: #ffffff;
+  border: 10px solid #f2f2f2;
+}
+input, textarea {
+  width: 100%;
+}
+div.paymentform input[type="checkbox"], input[type="radio"] {
+  width: auto;
+}
+div.paymentform label {
+  display: inline;
+  font-weight: 1;
+}
+h3 {
+  padding-top: 30px;
+}
+div.tab-pane h4 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+div.withborder {
+  border-style: solid;
+  padding: 5px;
+  border-width: 1px;
+}
+
+div.error {
+    color: red;
+    font-weight: bolder;
+}
+
+div.success {
+    color: green;
+    font-weight: bolder;
+    text-align: center;
+}
+
+div.center {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+
+
+.password-field[type=password] ~ .password-button .password-show-icon,
+.password-field[type=text] ~ .password-button .password-hidden-icon {
+  display: none;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-field{
+  width: 100%;
+  padding-right: 1.5em;
+  box-sizing: border-box;
+}
+
+.password-button{
+  position: absolute;
+  right:0.5em;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.password-field1[type=password] ~ .password-button1 .password-show-icon,
+.password-field1[type=text] ~ .password-button1 .password-hidden-icon {
+  display: none;
+}
+
+.password-container1 {
+  position: relative;
+  width: 100%;
+}
+
+.password-field1{
+  width: 100%;
+  padding-right: 1.5em;
+  box-sizing: border-box;
+}
+
+.password-button1{
+  position: absolute;
+  right:0.5em;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+.password-field2[type=password] ~ .password-button2 .password-show-icon,
+.password-field2[type=text] ~ .password-button2 .password-hidden-icon {
+  display: none;
+}
+
+.password-container2 {
+  position: relative;
+  width: 100%;
+}
+
+.password-field2{
+  width: 100%;
+  padding-right: 1.5em;
+  box-sizing: border-box;
+}
+
+.password-button2{
+  position: absolute;
+  right:0.5em;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.tilegrid {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, 200px);
+}
+.tile{
+width: 100px;
+height: 100px;
+}
+
+div.table {
+    display: table;
+    margin-bottom: 2.5rem;
+}
+
+div.tr {
+    padding: 0px;
+    display: table-row;
+}
+
+.pricing .table div.td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: table-cell;
+}
+
+.pricing div.td ul {
+    margin-bottom: 0;
+}
+
+div.td .pricing-table-wrapper {
+    height: 100%;
+}
+
+div+ div.td .pricing-price {
+    height: 100%;
+}
+
+div.td ul.pricing-list-wrapper {
+    height: 100%;
+}
+
+div.td .pricing-list-wrapper .pricing-list {
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#spacious_pricing_table_widget-5 .pricing-btn button {
+     background: #79cc8c;
+}
+
+#spacious_pricing_table_widget-5 .additional_storage {
+    width: 100%;
+}
+
+
+.bottom-arrow {
+    position: relative;
+    border-bottom: 8px solid white;
+}
+
+.bottom-arrow:after {
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #79cc8c;
+}
+
+/* product page */
+.productlogo {
+    width: 150px;
+    height: 150px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

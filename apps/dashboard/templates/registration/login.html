@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="form-box">
+  {% if form.errors %}
+    <p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>{% blocktrans %}Your account doesn't have access to this page. To proceed, please login with an account that has access.{% endblocktrans %}</p>
+    {% else %}
+      <p>{% blocktrans %}Please login to see this page.{% endblocktrans %}</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+          <td>
+           <div class="password-container">   
+                <input name="password" id="password" type="password"
+                  class="password-field"  placeholder="" autocomplete="current-password" required="">
+              
+              
+                      <a role="button" class="password-button"
+                      onclick="passwordVisibilitySwitch('password')" >  
+                                                                   
+                        <i class= "far fa-eye password-show-icon"></i>
+                        <i class= "far fa-eye-slash password-hidden-icon"></i> 
+                      </a>
+            </div>              
+          <script>
+                   
+          function passwordVisibilitySwitch(inputfieldId) {
+            const passwordField = document.getElementById(inputfieldId);
+            if(passwordField.type === "text") {
+                passwordField.type = "password";
+            } else {
+                passwordField.type = "text";
+            }
+          }
+          </script>
+        </td>
+      </tr>
+      </table>
+      <button type="confirm" class="button-primary">{% translate "login" %}</button>
+      <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,36 @@
+{% load static %}
+{% load i18n %}
+<html>
+    <head>
+        <title>HS-GUI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'Skeleton-2.0.4/css/normalize.css' %}">
+        <link rel="stylesheet" href="{% static 'Skeleton-2.0.4/css/skeleton.css' %}">
+        <link rel="stylesheet" href="{% static 'css/skeleton-tabs.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/topnav.css' %}">
+        <script src="{% static 'js/skeleton-tabs.js' %}"></script>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <nav class="topnav">
+            <a class="right" href="/accounts/logout">{%translate "Logout"%}</a>
+        </nav>
+        {% else %}
+        <nav class="topnav">
+            <a class="right" href="/accounts/login/">{%translate "Login"%}</a>
+        </nav>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+        <nav class="bottomnav">
+            <a class="right" href="/imprint">{%translate "Imprint"%}</a>
+            <a class="right" href="/contact">{%translate "Contact"%}</a>
+            <a class="right" href="/about">{%translate "About"%}</a>
+        </nav>
+        <div class="center">
+            <a href="https://github.com/solidcharity/TODO" target="_blank">{%translate "Powered by Django and Hostsharing"%}</a>
+        </div>
+
+    </body>
+</html>
