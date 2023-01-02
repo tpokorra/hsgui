@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -26,25 +27,35 @@ def search_command(request):
     commands["Bearbeite Domain"] = {'keywords': "Domain,Bearbeiten,Bearbeite"}
     commands["Lösche Domain"] = {'keywords': "Domain,Löschen,Lösche,Entfernen,Entferne"}
     commands["Neue Domain hinzufügen"] = {'keywords': "Domain,Neue,Neu,anlegen,hinzufügen,füge,hinzu,lege,an"}
-    commands["Wordpress Installationen auflisten"] = {'keywords': "Wordpress,Installationen,auflisten,liste,auf,anzeigen,zeige,an", "url": "/wordpress/list"}
     commands["Neue Nextcloud einrichten"] = {'keywords': "Nextcloud,Neue,Neu,anlegen,hinzufügen,füge,hinzu,lege,an"}
     commands["Greylisting abschalten"] = {'keywords': "Domain,Greylisting,grey,listing,abschalten,schalte,ab,SPAM"}
 
+
+    for app in apps.get_app_configs():
+        try:
+            commands.update(app.get_commands())
+        except AttributeError:
+            None
+
+    # make the keywords lowercase
+    for c in commands:
+        commands[c]['keywords'] = commands[c]['keywords'].lower()
+
     split_colon = searchtxt.split(':')
-    search_strings = split_colon[0].split(' ')
+    search_strings = split_colon[0].lower().split(' ')
 
     # find all commands that are matched by at least one word
     found = {}
     for c in commands:
         for s in search_strings:
-            if s.lower() in commands[c]['keywords'].lower():
+            if s in commands[c]['keywords']:
                 found[c] = 1
     # drop all commands that are not matched by at least one word
     result = {}
     for f in found:
         add = f
         for s in search_strings:
-            if not s.lower() in commands[f]['keywords'].lower():
+            if not s in commands[f]['keywords']:
                 add = None
         if add:
             result[add] = commands[add]
@@ -52,7 +63,7 @@ def search_command(request):
     domains = {'testdomain.de', 'example.org', 'beispielverein.de'}
     pac = hsusers.get_current_pac()
     domains = hsdomains.get_domains_of_pac(pac)
-    if len(result) == 1 and 'Domain' in commands[list(result.keys())[0]]['keywords'] and len(split_colon) > 1:
+    if len(result) == 1 and 'domain' in commands[list(result.keys())[0]]['keywords'] and len(split_colon) > 1:
         result['domains'] = {}
         for d in domains:
             if split_colon[1].strip().lower() in d:
