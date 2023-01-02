@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h2>{{webapp}} Installationen</h2>
+
+    <input type="text" id="filter" placeholder="Tippe um zu filtern"></input>
+    <div id="webapps"></div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    captions = JSON.parse('{{captions|safe}}');
+    data = JSON.parse('{{data|safe}}');
+
+    output = "<table><thead><tr>";
+    for (c in captions) {
+        output += "<th>" + captions[c] + "</th>";
+    }
+    output += "</tr></thead><tbody>";
+
+    for (d in data) {
+        output += "<tr><td>" + data[d].user + "</td><td>" + data[d].domain + "</td><td>" + data[d].version + "</td></tr>";
+    }
+
+    output += "</tbody></table>";
+    $('#webapps').html(output);
+});
+
+</script>
+
+{% endblock %}
+

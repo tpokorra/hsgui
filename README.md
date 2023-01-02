@@ -9,3 +9,16 @@
     make create_superuser
     make restart
     make collectstatic
+
+# Neue Apps hinzufügen
+
+    cd hsgui
+    pipenv shell
+    mkdir apps/myapp
+    python manage.py startapp myapp apps/myapp
+
+Danach: 
+
+* apps/myapp/apps.py bearbeiten: name = 'apps.myapp'
+* App in hsgui/settings.py einfügen
+* URLs in hsgui/urls.py ergänzen

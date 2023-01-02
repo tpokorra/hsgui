@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path
 
 from apps.dashboard import views as dashboard_views
+from apps.domains import views as domains_views
+from apps.wordpress import views as wordpress_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', dashboard_views.home),
+    path('search', dashboard_views.search_command),
+    path('wordpress/list', wordpress_views.wordpress_list),
 ]

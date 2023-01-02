@@ -3,3 +3,4 @@ __pycache__
 .venv
 *.pyc
 *.sqlite3
+settings_local.py

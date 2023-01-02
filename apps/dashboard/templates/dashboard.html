@@ -2,5 +2,49 @@
 {% load i18n %}
 
 {% block content %}
-Hello World
+<div class="container">
+    Was möchten Sie tun?
+    <input id="txtCommand" type="text" length="80" placeholder="Befehl eingeben">
+
+    eg. Neue Domain hinzufügen<br/>
+    eg. Domain bearbeiten: example.org<br/>
+    eg. Zeige Wordpress Installationen<br/>
+    <div id="commands">
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#txtCommand').on('input', function() {
+        $.ajax({
+            url: '/search',
+            type: 'POST',
+            dataType: 'json',
+            data:{
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                searchtext: $(this).val()
+            },
+            success:function(data) {
+                output = '';
+                for (command in data) {
+                    if (command != 'domains') {
+                        link = ''
+                        if (data[command]['url']) {
+                            link = 'onclick="location.href=\'' + data[command]['url'] + '\'"'
+                        }
+                        output += '<button class="button-primary" ' + link + '>' + command + '</button><br/>';
+                    }
+                    else {
+                        for (domain in data['domains']) {
+                            output += '<button class="button-secondary">' + domain + '</button><br/>';
+                        }
+                    }
+                }
+                $("#commands").html(output);
+            }
+        });
+    });
+});
+</script>
+
 {% endblock %}
