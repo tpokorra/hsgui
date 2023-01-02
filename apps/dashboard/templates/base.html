@@ -15,6 +15,7 @@
     <body>
         {% if user.is_authenticated %}
         <nav class="topnav">
+            <a class="left" href="/">{%translate "Mein Hostsharing Paket"%}</a>
             <a class="right" href="/accounts/logout">{%translate "Logout"%}</a>
         </nav>
         {% else %}
@@ -30,7 +31,7 @@
             <a class="right" href="/about">{%translate "About"%}</a>
         </nav>
         <div class="center">
-            <a href="https://github.com/solidcharity/TODO" target="_blank">{%translate "Powered by Django and Hostsharing"%}</a>
+            <a href="https://github.com/tpokorra/hsgui" target="_blank">{%translate "Powered by Django and Hostsharing"%}</a>
         </div>
 
     </body>
