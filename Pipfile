@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "~=3.2"
 hsutilities = "*"
+"hs.admin.api" = "0.3"
 
 [dev-packages]
 

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h2>Domain anlegen</h2>
+
+    <form action="/domains/add" method="POST">
+        {% csrf_token %}
+        {{errors}}
+        <input type="text" name="owner" placeholder="Tippe den Namen des Benutzers" value="{{owner}}"></input><br/>
+        <input type="text" name="domain" placeholder="Tippe den Namen der Domain" value="{{domain}}"></input><br/>
+        <input type="submit" value="Domain anlegen" class="button-primary"/>
+    </form>
+</div>
+
+
+{% endblock %}
+

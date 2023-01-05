@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', dashboard_views.home),
     path('search', dashboard_views.search_command),
+    path('domains/add', domains_views.domains_add),
     path('wordpress/list', wordpress_views.wordpress_list),
     #path('nextcloud/list', nextcloud_views.nextcloud_list),
 ]
