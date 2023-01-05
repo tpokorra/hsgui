@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h2>Domain bearbeiten</h2>
+
+    <!-- {{domain|safe}} -->
+    <form action="/domains/edit/{{domain.name}}" method="POST">
+
+    {{errors}}
+
+    {% csrf_token %}
+    <table>
+        <tr><th>Name der Domain</th><td>{{domain.name}}</td></tr>
+        <tr><th>Besitzer der Domain</th><td>{{domain.user}}</td></tr>
+        <tr><th>Geschaltet seit</th><td>{{domain.since}}</td></tr>
+
+        <tr><th colspan="2">Domain-Optionen:</th></tr>
+        {% for option in domainoptions %}
+        <tr>
+        {% if option.name in domain.domainoptions %}
+            <th><input type="checkbox" name='{{option.name}}' value='1' checked/></th>
+        {% else %}
+            <th><input type="checkbox" name='{{option.name}}' value='1'/></th>
+        {% endif %}
+        <td><b>{{option.name}}</b><br/>{{option.label}}</td></tr>
+        {% endfor %}
+        
+    </table>
+    <input type="submit" value="Domain speichern" class="button-primary"/>
+    </form>
+</div>
+
+
+{% endblock %}
+

@@ -15,37 +15,76 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
-    $('#txtCommand').on('input', function() {
-        $.ajax({
+var firstCommand = '';
+var firstDomain = '';
+var firstUrl = '';
+var ajaxCallInitiated = false;
+function searchForCommand() {
+    firstCommand = '';
+    firstDomain = '';
+    firstUrl = '';
+    ajaxCallInitiated = false;
+    $.ajax({
             url: '/search',
             type: 'POST',
             dataType: 'json',
             data:{
                 csrfmiddlewaretoken: "{{ csrf_token }}",
-                searchtext: $(this).val()
+                searchtext: $('#txtCommand').val()
             },
             success:function(data) {
-                output = '';
+                output = ''
                 for (command in data) {
                     if (command != 'domains') {
+                        if (firstCommand == '') {
+                            firstCommand = command
+                            if (data[command]['keywords'].includes('selectdomain')) {
+                                firstCommand += ": "
+                            }
+                            firstUrl = data[command]['url']
+                        }
                         link = ''
-                        if (data[command]['url']) {
+                        if (data[command]['keywords'].includes('selectdomain')) {
+                            link = 'onclick="$(\'#txtCommand\').val(\'' + command + ': '+ '\'); searchForCommand(); $(\'#txtCommand\').focus()"'
+                        } else if (data[command]['url']) {
                             link = 'onclick="location.href=\'' + data[command]['url'] + '\'"'
                         }
-                        output += '<button class="button-primary" ' + link + '>' + command + '</button><br/>';
+                        output += '<button class="button-primary" ' + link + '>' + command + '</button><br/>'
                     }
                     else {
                         for (domain in data['domains']) {
-                            output += '<button class="button-secondary">' + domain + '</button><br/>';
+                            if (firstDomain == '') {
+                                firstDomain = domain
+                            }
+                            output += '<a href="'+ firstUrl + domain + '" class="button btn-secondary" role="button">' + domain + '</a><br/>'
                         }
                     }
                 }
-                $("#commands").html(output);
+                $("#commands").html(output)
             }
-        });
-    });
-});
+        })
+}
+
+$(document).ready(function(){
+    $('#txtCommand').on('input', function() {
+        if (!ajaxCallInitiated) {
+            ajaxCallInitiated = true
+            setTimeout(searchForCommand, 500)
+        }
+    })
+    $('#txtCommand').keypress(function (e) {
+       if (e.which == 13 && firstCommand != '') {
+           if (firstDomain != '') {
+               $('#txtCommand').val(firstCommand + firstDomain)
+           } else {
+               $('#txtCommand').val(firstCommand)
+               searchForCommand()
+           }
+       }
+    })
+
+
+})
 </script>
 
 {% endblock %}

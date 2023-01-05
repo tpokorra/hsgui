@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h2>Domain Ansicht</h2>
+
+    <!-- {{domain|safe}} -->
+    <table>
+        <tr><th>Name der Domain</th><td>{{domain.name}}</td></tr>
+        <tr><th>Besitzer der Domain</th><td>{{domain.user}}</td></tr>
+        <tr><th>Geschaltet seit</th><td>{{domain.since}}</td></tr>
+        <!-- <tr><th>Gültige Subdomains (für Letsencrypt)</th><td>{{domain.validsubdomainnames}}</td></tr> -->
+        <tr><th colspan="2">Domain-Optionen:</th></tr>
+        {% for option in domainoptions %}
+        <tr>
+        {% if option.name in domain.domainoptions %}
+            <th>&#9745;</th>
+        {% else %}
+            <th>&#9744;</th>
+        {% endif %}
+        <td><b>{{option.name}}</b><br/>{{option.label}}</td></tr>
+        {% endfor %}
+
+
+    </table>
+
+    {% if action == 'delete' %}
+    <form action="/domains/delete/{{domain.name}}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-danger" onclick="return confirm('Soll die Domain {{domain.name}} wirklich gelöscht werden?')">Domain {{domain.name}} löschen</button>
+    </form>
+    {% else %}
+    <button class="button-primary" onclick="location.href='/domains/edit/{{domain.name}}'">Domain bearbeiten</button>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+

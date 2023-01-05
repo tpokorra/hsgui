@@ -7,8 +7,8 @@ class DomainsConfig(AppConfig):
 
     def get_commands(self):
         commands = {}
-        commands["Bearbeite Domain"] = {'keywords': "Domain,Bearbeiten,Bearbeite,SelectDomain"}
-        commands["Lösche Domain"] = {'keywords': "Domain,Löschen,Lösche,Entfernen,Entferne,SelectDomain"}
+        commands["Bearbeite Domain"] = {'keywords': "Domain,Bearbeiten,Bearbeite,SelectDomain", 'url': '/domains/edit/'}
+        commands["Lösche Domain"] = {'keywords': "Domain,Löschen,Lösche,Entfernen,Entferne,SelectDomain", 'url': '/domains/delete/'}
         commands["Neue Domain hinzufügen"] = {'keywords': "Domain,Neue,Neu,anlegen,hinzufügen,füge,hinzu,lege,an", 'url': '/domains/add'}
         commands["Greylisting abschalten"] = {'keywords': "Domain,Greylisting,grey,listing,abschalten,schalte,ab,SPAM,SelectDomain"}
         return commands

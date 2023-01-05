@@ -49,7 +49,13 @@ div.center {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
-  }
+}
+
+a.btn-secondary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
 
 
 .password-field[type=password] ~ .password-button .password-show-icon,

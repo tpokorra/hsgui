@@ -28,6 +28,9 @@ urlpatterns = [
     path('', dashboard_views.home),
     path('search', dashboard_views.search_command),
     path('domains/add', domains_views.domains_add),
+    path('domains/show/<domain>', domains_views.domains_show),
+    path('domains/edit/<domain>', domains_views.domains_edit),
+    path('domains/delete/<domain>', domains_views.domains_delete),
     path('wordpress/list', wordpress_views.wordpress_list),
     #path('nextcloud/list', nextcloud_views.nextcloud_list),
 ]
