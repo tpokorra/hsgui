@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.dashboard',
     'apps.domains',
     'apps.wordpress',
+    'apps.nextcloud',
 ]
 
 MIDDLEWARE = [

@@ -24,12 +24,6 @@ def search_command(request):
     searchtxt = get_param(request, 'searchtext', '')
 
     commands = {}
-    commands["Bearbeite Domain"] = {'keywords': "Domain,Bearbeiten,Bearbeite"}
-    commands["Lösche Domain"] = {'keywords': "Domain,Löschen,Lösche,Entfernen,Entferne"}
-    commands["Neue Domain hinzufügen"] = {'keywords': "Domain,Neue,Neu,anlegen,hinzufügen,füge,hinzu,lege,an"}
-    commands["Neue Nextcloud einrichten"] = {'keywords': "Nextcloud,Neue,Neu,anlegen,hinzufügen,füge,hinzu,lege,an"}
-    commands["Greylisting abschalten"] = {'keywords': "Domain,Greylisting,grey,listing,abschalten,schalte,ab,SPAM"}
-
 
     for app in apps.get_app_configs():
         try:
@@ -60,10 +54,9 @@ def search_command(request):
         if add:
             result[add] = commands[add]
 
-    domains = {'testdomain.de', 'example.org', 'beispielverein.de'}
     pac = hsusers.get_current_pac()
     domains = hsdomains.get_domains_of_pac(pac)
-    if len(result) == 1 and 'domain' in commands[list(result.keys())[0]]['keywords'] and len(split_colon) > 1:
+    if len(result) == 1 and 'SelectDomain' in commands[list(result.keys())[0]]['keywords'] and len(split_colon) > 1:
         result['domains'] = {}
         for d in domains:
             if split_colon[1].strip().lower() in d:

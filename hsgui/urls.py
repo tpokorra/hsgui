@@ -20,6 +20,7 @@ from django.urls import path
 from apps.dashboard import views as dashboard_views
 from apps.domains import views as domains_views
 from apps.wordpress import views as wordpress_views
+from apps.nextcloud import views as nextcloud_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('', dashboard_views.home),
     path('search', dashboard_views.search_command),
     path('wordpress/list', wordpress_views.wordpress_list),
+    #path('nextcloud/list', nextcloud_views.nextcloud_list),
 ]
