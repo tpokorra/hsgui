@@ -42,6 +42,9 @@ collectstatic:
 restart:
 	mkdir -p ${HOME}/doms/${DOMAIN}/app-ssl/tmp && touch ${HOME}/doms/${DOMAIN}/app-ssl/tmp/restart.txt
 
+hsadmin_properties:
+	@/bin/bash -c 'if [ -f ~/.hsadmin.properties ]; then echo "Die Datei ~/.hsadmin.properties existiert bereits"; else echo "Es wird die Datei .hsadmin.properties mit dem Passwort für den Benutzer ${PAC} angelegt, um automatisierte Aufgaben zu ermöglichen" && read -p "Bitte Password für ${PAC} eingeben: " -s pac_password && echo "${PAC}.passWord=$$pac_password" >> ~/.hsadmin.properties; echo; echo "Erfolg: die Datei wurde angelegt."; fi'
+
 # Ansible requires Python >= 3.8; on Debian Buster we have Python 3.7.3
 install_ansible:
 	mkdir -p ${HOME}/opt
