@@ -22,3 +22,15 @@ Danach:
 * apps/myapp/apps.py bearbeiten: name = 'apps.myapp'
 * App in hsgui/settings.py einfügen
 * URLs in hsgui/urls.py ergänzen
+
+# Einrichtung
+
+Es sollte die folgende Datei in `/home/pacs/xyz00/.hsadmin.properties` angelegt werden:
+
+```
+xyz00.passWord=insertpkgadminpasswordhere
+```
+
+# Benutzung
+
+Melde dich mit dem Benutzer `xyz00` an, in dem diese Anwendung installiert ist.
