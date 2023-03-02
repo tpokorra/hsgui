@@ -1,3 +1,16 @@
+# Dokumentation
+
+Das ist momentan ein Experiment.
+
+Wie können wir es im Moment einfacher für die Mitglieder von Hostsharing machen, Benutzer einzurichten, E-Mail Postfächer zu verwalten, Anwendungen zu installieren und zu pflegen.
+
+Diese Screenshots sollen zeigen, was momentan schon umgesetzt ist:
+
+![Befehl auswählen](docs/img/hs-pac-web_befehle.png)
+
+![Domain auswählen](docs/img/hs-pac-web_domain.png)
+
+![Wordpress Installationen auflisten](docs/img/hs-pac-web_wordpress_versionen.png)
 
 # Installation
 
