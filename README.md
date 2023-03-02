@@ -14,8 +14,8 @@ Diese Screenshots sollen zeigen, was momentan schon umgesetzt ist:
 
 # Installation
 
-    git clone https://github.com/tpokorra/hsgui
-    cd hsgui
+    git clone https://github.com/tpokorra/hs-pac-web
+    cd hs-pac-web
     export PIPENV_VENV_IN_PROJECT=1
     export ADMINDOMAIN=admin.meinedomain.de
     make init
@@ -30,7 +30,7 @@ Melde dich mit dem Benutzer `xyz00` an, in dem diese Anwendung installiert ist.
 
 # Neue Apps hinzufügen
 
-    cd hsgui
+    cd hs-pac-web
     pipenv shell
     mkdir apps/myapp
     python manage.py startapp myapp apps/myapp
